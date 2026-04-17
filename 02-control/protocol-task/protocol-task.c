@@ -49,17 +49,19 @@ void protocol_task_handle(char* command_string)
 
 
 	// Добавляем вывод найденных имени команды и ее аргументов;
-	printf("received string: '%s'\n", command_name, " ", command_args);
+	// ... после разделения строки ...
+	printf("Parsed: command='%s' args='%s'\n", command_name, command_args);
+
 
 
 	// в цикле проходим по массиву команд `api` и ищем совпадение имени команды;
 
-	for (int i = 0; i < commands_count ; i++)
+	for (int i = 0; i < commands_count; i++)
 	{
 		// определяем совпадает ли команда  с именем команды в массиве `api`
 		// если не совпадает, переходим к следующей итерации
 
-		if (strcmp(command_name, api[i].command_name)!=0) {
+		if (strcmp(command_name, api[i].command_name) != 0) {
 			continue;
 		}
 

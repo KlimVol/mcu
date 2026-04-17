@@ -1,4 +1,5 @@
 #pragma once
+#include <stdint.h>
 
 typedef enum
 {
@@ -9,3 +10,4 @@ typedef enum
 void led_task_init();
 void led_task_handle();
 void led_task_state_set(led_state_t state);
+void led_task_state_blink_period(uint32_t period_ms);

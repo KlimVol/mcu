@@ -1,5 +1,6 @@
 #include "led-task.h"
 #include "pico/stdlib.h"
+#include "stdint.h"
 #include "hardware/gpio.h"
 
 const uint LED_PIN = 25;
@@ -36,4 +37,7 @@ void led_task_handle() {
 }
 void led_task_state_set(led_state_t state) {
 	led_state = state;
+}
+void led_task_state_blink_period(uint32_t period_ms) {
+	LED_BLINK_PERIOD_US = period_ms*1000;
 }
