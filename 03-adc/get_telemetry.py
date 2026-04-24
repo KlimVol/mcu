@@ -24,6 +24,8 @@ def main():
         try:
             while(1):
                 ts = time.time() - start_ts
+                if ser.in_waiting > 100: # если в очереди скопилось много данных
+                    ser.reset_input_buffer()
                 voltage_V, temp_C = read_value(ser)
                 measure_ts.append(ts)
                 measure_voltage_V.append(voltage_V)
