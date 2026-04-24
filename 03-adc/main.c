@@ -68,6 +68,12 @@ void temp_callback(const char* args) {
 	float temp_C=measure_temperature();
 	printf("%f\n", temp_C);
 }
+void tm_start_callback(const char* args) {
+	adc_task_state_set(ADC_TASK_STATE_RUN);
+}
+void tm_stop_callback(const char* args) {
+	adc_task_state_set(ADC_TASK_STATE_IDLE);
+}
 void help_callback(const char* args);
 api_t device_api[] =
 {
@@ -80,6 +86,8 @@ api_t device_api[] =
 	{"wmem", wmem_callback, "Addres value changed"},
 	{"get_adc", adc_callback, "Print measured voltage"},
 	{"get_temp", temp_callback, "Print measured temperature"},
+	{"tm_start", tm_start_callback, "Start measuring telemetry"},
+	{"tm_stop", tm_stop_callback, "Stop measuring telemetry"},
 	{"help", help_callback, "print commands with descriptions"},
 	{NULL, NULL, NULL}
 };
@@ -102,5 +110,6 @@ int main()
 	while (1) {
 		protocol_task_handle(stdio_task_handle());
 		led_task_handle();
+		adc_task_handle();
 	}
 }
